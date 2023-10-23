@@ -21,6 +21,6 @@ public class UserController {
     public String registerUser(@RequestBody UserDetails userDetails) {
         String registrationMessage = "User " + userDetails.getName() + " (" + userDetails.getEmail() + ") has been registered";
         String notificationResult = registrationServiceClient.sendRegistrationNotification(registrationMessage);
-        return "Registration successful for" + userDetails.getName() + "Notification: " + notificationResult;
+        return "Registration successful for" + userDetails.getName() +  "Notification: " + notificationResult;
     }
 }
