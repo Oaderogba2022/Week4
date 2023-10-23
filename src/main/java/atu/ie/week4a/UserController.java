@@ -17,12 +17,10 @@ public class UserController {
         this.registrationServiceClient = registrationServiceClient;
     }
 
-    @PostMapping("/confirm-and-register")
-    public Map<String, String> confirmAndRegister(@RequestBody UserDetails userDetails)
-    {
-        String confirm = registrationServiceClient.registerUser(userDetails);
-        Map<String, String> responseMessage = new HashMap<>();
-        responseMessage.put("message", confirm);
-        return responseMessage;
+    @PostMapping("/register")
+    public String registerUser(@RequestBody UserDetails userDetails) {
+        String registrationMessage = "User " + userDetails.getName() + " (" + userDetails.getEmail() + ") has been registered";
+        String notificationResult = registrationServiceClient.sendRegistrationNotification(registrationMessage);
+        return "Registration successful for" + userDetails.getName() +  "Notification: " + notificationResult;
     }
 }
